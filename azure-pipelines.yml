@@ -40,6 +40,7 @@ steps:
      publishLocation: Container
 
 - script: 
-   docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-weekly zap-api-scan.py \  
-    -t https://www.example.com/openapi.json -f openapi \  
-    -z "-configfile /zap/wrk/options.prop"
+   docker pull owasp/zap2docker-weekly
+   docker run -v $(Build.ArtifactStagingDirectory):/zap/wrk/:rw -t owasp/zap2docker-weekly zap-api-scan.py -t https://www.example.com/openapi.json -f openapi -z "-configfile /zap/wrk/options.prop"
+  displayName: "API Scan"
+  continueOnError: "true"
