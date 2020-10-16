@@ -17,5 +17,20 @@ steps:
 
 - script: |
     npm install
-    npm run build
-  displayName: 'npm install and build'
+  displayName: 'npm install'
+
+- script: |
+    npm test
+  displayName: 'npm test'
+
+- task: ArchiveFiles@2
+  displayName: 'Archive files'
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
+
+- script: 
+   docker pull owasp/zap2docker-weekly
+   docker run -t owasp/zap2docker-weekly zap-api-scan.py -t https://www.example.com/openapi.json -f openapi
+  displayName: "API Scan"
+  continueOnError: "true"
