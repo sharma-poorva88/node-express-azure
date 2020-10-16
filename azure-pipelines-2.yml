@@ -30,6 +30,6 @@ steps:
     includeRootFolder: false
 
 - script: 
-   docker run -t owasp/zap2docker-weekly:latest zap-api-scan.py -t https://reqres.in/api/users -f openapi
+   docker run -t owasp/zap2docker-weekly:latest zap-api-scan.py -t https://reqres.in/api/users -f openapi -r '$(System.DefaultWorkingDirectory)/reports/scanreport.html'
   displayName: "API Scan"
   continueOnError: "true"
