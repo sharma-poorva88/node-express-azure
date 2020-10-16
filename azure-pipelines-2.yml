@@ -30,7 +30,6 @@ steps:
     includeRootFolder: false
 
 - script: 
-   docker pull owasp/zap2docker-weekly
-   docker run -t "owasp/zap2docker-weekly zap-api-scan.py" -t "https://www.example.com/openapi.json" -f "openapi"
+   docker run -t owasp/zap2docker-stable zap-baseline.py -t https://www.example.com
   displayName: "API Scan"
   continueOnError: "true"
