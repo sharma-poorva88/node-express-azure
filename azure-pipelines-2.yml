@@ -31,6 +31,6 @@ steps:
 
 - script: 
    docker pull owasp/zap2docker-weekly
-   docker run -t owasp/zap2docker-weekly zap-api-scan.py https://www.example.com/openapi.json -f openapi
+   docker run owasp/zap2docker-weekly zap-api-scan.py -t https://www.example.com/openapi.json -f openapi
   displayName: "API Scan"
   continueOnError: "true"
